@@ -8,7 +8,7 @@ packageJSON = require './package.json'
 
 OPTIONS = [
   {
-    names: ['redis-uri', 'u']
+    names: ['redis-uri', 'r']
     type: 'string'
     env: 'REDIS_URI'
     help: 'Redis URI'
@@ -64,7 +64,7 @@ class Command
 
     unless options.redis_uri? && options.redis_namespace? && options.queue_name? && options.queue_timeout?
       console.error "usage: <%= appname %> [OPTIONS]\noptions:\n#{parser.help({includeEnv: true})}"
-      console.error chalk.red 'Missing required parameter --redis-uri, -u, or env: REDIS_URI' unless options.redis_uri?
+      console.error chalk.red 'Missing required parameter --redis-uri, -r, or env: REDIS_URI' unless options.redis_uri?
       console.error chalk.red 'Missing required parameter --redis-namespace, -n, or env: REDIS_NAMESPACE' unless options.redis_namespace?
       console.error chalk.red 'Missing required parameter --queue-timeout, -t, or env: QUEUE_TIMEOUT' unless options.queue_timeout?
       console.error chalk.red 'Missing required parameter --queue-name, -u, or env: QUEUE_NAME' unless options.queue_name?
