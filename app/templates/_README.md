@@ -1,23 +1,23 @@
-# generator-octoblu-worker
+# <%= appname %>
 
-[![Build Status](https://travis-ci.org/octoblu/generator-octoblu-worker.svg?branch=master)](https://travis-ci.org/octoblu/generator-octoblu-worker)
-[![Test Coverage](https://codecov.io/gh/octoblu/generator-octoblu-worker/branch/master/graph/badge.svg)](https://codecov.io/gh/octoblu/generator-octoblu-worker)
-[![Dependency status](http://img.shields.io/david/octoblu/generator-octoblu-worker.svg?style=flat)](https://david-dm.org/octoblu/generator-octoblu-worker)
-[![devDependency Status](http://img.shields.io/david/dev/octoblu/generator-octoblu-worker.svg?style=flat)](https://david-dm.org/octoblu/generator-octoblu-worker#info=devDependencies)
+[![Build Status](https://travis-ci.org/<%= githubUrl %>/<%= appname %>.svg?branch=master)](https://travis-ci.org/<%= githubUrl %>/<%= appname %>)
+[![Test Coverage](https://codecov.io/gh/<%= githubUrl %>/<%= appname %>/branch/master/graph/badge.svg)](https://codecov.io/gh/<%= githubUrl %>/<%= appname %>)
+[![Dependency status](http://img.shields.io/david/<%= githubUrl %>/<%= appname %>.svg?style=flat)](https://david-dm.org/<%= githubUrl %>/<%= appname %>)
+[![devDependency Status](http://img.shields.io/david/dev/<%= githubUrl %>/<%= appname %>.svg?style=flat)](https://david-dm.org/<%= githubUrl %>/<%= appname %>#info=devDependencies)
 [![Slack Status](http://community-slack.octoblu.com/badge.svg)](http://community-slack.octoblu.com)
 
-[![NPM](https://nodei.co/npm/generator-octoblu-worker.svg?style=flat)](https://npmjs.org/package/generator-octoblu-worker)
+[![NPM](https://nodei.co/npm/<%= appname %>.svg?style=flat)](https://npmjs.org/package/<%= appname %>)
 
 ## Installing
 
 ```bash
-$ npm install generator-octoblu-worker
+$ npm install <%= appname %>
 ```
 
 ### Usage
 
-```javascript
-console.log('hello world!');
+```bash
+./command.js --help
 ```
 
 ## License
