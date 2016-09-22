@@ -59,6 +59,9 @@ class OctobluCliGenerator extends yeoman.Base
     @template '_LICENSE', 'LICENSE', context
     @template '_command.coffee', 'command.coffee', context
     @template 'src/_worker.coffee', 'src/worker.coffee', context
+    @template 'test/_worker-spec.coffee', 'test/worker-spec.coffee', context
+    @template 'test/_test_helper.coffee', 'test/test_helper.coffee', context
+    @template 'test/_mocha.opts', 'test/mocha.opts', context
 
   install: =>
     return if @skipInstall

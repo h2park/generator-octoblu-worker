@@ -20,8 +20,8 @@ class Worker
       catch error
         return callback error
 
-      console.log 'DO SOMETHING', {data}
-      callback()
+      callback null, data
+    return # avoid returning promise
 
   run: =>
     async.doUntil @do, (=> @shouldStop), =>

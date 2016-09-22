@@ -30,6 +30,9 @@ describe 'app', ->
       'README.md'
       'package.json'
       'src/worker.coffee'
+      'test/worker-spec.coffee'
+      'test/test_helper.coffee'
+      'test/mocha.opts'
       'command.js'
       'command.coffee'
     ]
