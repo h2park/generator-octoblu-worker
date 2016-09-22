@@ -17,7 +17,6 @@ OPTIONS = [
     names: ['redis-namespace', 'n']
     type: 'string'
     env: 'REDIS_NAMESPACE'
-    default: 'work'
     help: 'Redis namespace for redis-ns'
   },
   {
@@ -30,7 +29,7 @@ OPTIONS = [
     names: ['queue-timeout', 't']
     type: 'positiveInteger'
     env: 'QUEUE_TIMEOUT'
-    defaut: 30
+    default: 30
     help: 'BRPOP timeout (in seconds)'
   },
   {
