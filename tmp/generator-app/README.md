@@ -1,3 +1,27 @@
+# generator-octoblu-worker
+
+[![Build Status](https://travis-ci.org/octoblu/generator-octoblu-worker.svg?branch=master)](https://travis-ci.org/octoblu/generator-octoblu-worker)
+[![Test Coverage](https://codecov.io/gh/octoblu/generator-octoblu-worker/branch/master/graph/badge.svg)](https://codecov.io/gh/octoblu/generator-octoblu-worker)
+[![Dependency status](http://img.shields.io/david/octoblu/generator-octoblu-worker.svg?style=flat)](https://david-dm.org/octoblu/generator-octoblu-worker)
+[![devDependency Status](http://img.shields.io/david/dev/octoblu/generator-octoblu-worker.svg?style=flat)](https://david-dm.org/octoblu/generator-octoblu-worker#info=devDependencies)
+[![Slack Status](http://community-slack.octoblu.com/badge.svg)](http://community-slack.octoblu.com)
+
+[![NPM](https://nodei.co/npm/generator-octoblu-worker.svg?style=flat)](https://npmjs.org/package/generator-octoblu-worker)
+
+## Installing
+
+```bash
+$ npm install generator-octoblu-worker
+```
+
+### Usage
+
+```javascript
+console.log('hello world!');
+```
+
+## License
+
 The MIT License (MIT)
 
 Copyright 2016 Octoblu
