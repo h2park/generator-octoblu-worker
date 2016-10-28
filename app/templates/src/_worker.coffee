@@ -2,15 +2,22 @@ async = require 'async'
 
 class Worker
   constructor: (options={})->
-    { @redis, @queueName, @queueTimeout } = options
-    throw new Error('Worker: requires redis') unless @redis?
+    { @client, @queueName, @queueTimeout } = options
+    throw new Error('Worker: requires client') unless @client?
     throw new Error('Worker: requires queueName') unless @queueName?
     throw new Error('Worker: requires queueTimeout') unless @queueTimeout?
     @shouldStop = false
     @isStopped = false
 
+  doWithNextTick: (callback) =>
+    # give some time for garbage collection
+    process.nextTick =>
+      @do (error) =>
+        process.nextTick =>
+          callback error
+
   do: (callback) =>
-    @redis.brpop @queueName, @queueTimeout, (error, result) =>
+    @client.brpop @queueName, @queueTimeout, (error, result) =>
       return callback error if error?
       return callback() unless result?
 
@@ -23,9 +30,10 @@ class Worker
       callback null, data
     return # avoid returning promise
 
-  run: =>
-    async.doUntil @do, (=> @shouldStop), =>
+  run: (callback) =>
+    async.doUntil @doWithNextTick, (=> @shouldStop), =>
       @isStopped = true
+      callback null
 
   stop: (callback) =>
     @shouldStop = true

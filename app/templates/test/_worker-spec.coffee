@@ -6,13 +6,13 @@ describe 'Worker', ->
   beforeEach (done) ->
     client = new Redis 'localhost', dropBufferSupport: true
     client.on 'ready', =>
-      @redis = new RedisNS 'test-worker', client
+      @client = new RedisNS 'test-worker', client
       done()
 
   beforeEach ->
     queueName = 'work'
     queueTimeout = 1
-    @sut = new Worker { @redis, queueName, queueTimeout }
+    @sut = new Worker { @client, queueName, queueTimeout }
 
   afterEach (done) ->
     @sut.stop done
@@ -20,7 +20,7 @@ describe 'Worker', ->
   describe '->do', ->
     beforeEach (done) ->
       data = JSON.stringify foo: 'bar'
-      @redis.lpush 'work', data, done
+      @client.lpush 'work', data, done
       return # stupid promises
 
     beforeEach (done) ->
