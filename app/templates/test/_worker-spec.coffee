@@ -1,18 +1,25 @@
-Worker  = require '../src/worker'
+_       = require 'lodash'
 Redis   = require 'ioredis'
 RedisNS = require '@octoblu/redis-ns'
+Worker  = require '../src/worker'
 
 describe 'Worker', ->
   beforeEach (done) ->
     client = new Redis 'localhost', dropBufferSupport: true
-    client.on 'ready', =>
+    client = _.bindAll client, _.functionsIn(client)
+    client.ping (error) =>
+      return done error if error?
+      client.once 'error', done
       @client = new RedisNS 'test-worker', client
-      done()
+      done null
+    return # redis fix
 
   beforeEach ->
-    queueName = 'work'
-    queueTimeout = 1
-    @sut = new Worker { @client, queueName, queueTimeout }
+    env = {
+      QUEUE_NAME: 'work'
+      QUEUE_TIMEOUT: 1
+    }
+    @sut = new Worker { @client, env }
 
   afterEach (done) ->
     @sut.stop done

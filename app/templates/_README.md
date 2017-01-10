@@ -22,9 +22,9 @@ $ npm install <%= appname %>
 
 ## License
 
-The MIT License (MIT)
+MIT License
 
-Copyright 2016 Octoblu
+Copyright (c) 2017 Octoblu
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

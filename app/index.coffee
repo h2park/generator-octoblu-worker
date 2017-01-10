@@ -57,6 +57,7 @@ class OctobluCliGenerator extends yeoman.Base
     @template '_travis.yml', '.travis.yml', context
     @template '_README.md', 'README.md', context
     @template '_LICENSE', 'LICENSE', context
+    @template '_Dockerfile', 'Dockerfile', context
     @template '_command.coffee', 'command.coffee', context
     @template 'src/_worker.coffee', 'src/worker.coffee', context
     @template 'test/_worker-spec.coffee', 'test/worker-spec.coffee', context

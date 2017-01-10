@@ -28,6 +28,7 @@ describe 'app', ->
       '.travis.yml'
       'LICENSE'
       'README.md'
+      'Dockerfile'
       'package.json'
       'src/worker.coffee'
       'test/worker-spec.coffee'

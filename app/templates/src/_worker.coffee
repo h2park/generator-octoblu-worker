@@ -1,15 +1,13 @@
 async = require 'async'
 
 class Worker
-  constructor: (options={})->
-    { @client, @queueName, @queueTimeout } = options
+  constructor: ({ @client, env })->
+    { @QUEUE_NAME, @QUEUE_TIMEOUT } = env
     throw new Error('Worker: requires client') unless @client?
-    throw new Error('Worker: requires queueName') unless @queueName?
-    throw new Error('Worker: requires queueTimeout') unless @queueTimeout?
-    @shouldStop = false
-    @isStopped = false
+    throw new Error('Worker: requires QUEUE_NAME') unless @QUEUE_NAME?
+    throw new Error('Worker: requires QUEUE_TIMEOUT') unless @QUEUE_TIMEOUT?
 
-  doWithNextTick: (callback) =>
+  _doWithNextTick: (callback) =>
     # give some time for garbage collection
     process.nextTick =>
       @do (error) =>
@@ -17,7 +15,7 @@ class Worker
           callback error
 
   do: (callback) =>
-    @client.brpop @queueName, @queueTimeout, (error, result) =>
+    @client.brpop @QUEUE_NAME, @QUEUE_TIMEOUT, (error, result) =>
       return callback error if error?
       return callback() unless result?
 
@@ -31,23 +29,15 @@ class Worker
     return # avoid returning promise
 
   run: (callback) =>
-    async.doUntil @doWithNextTick, (=> @shouldStop), =>
-      @isStopped = true
-      callback null
+    async.doUntil @_doWithNextTick, @_shouldStop, (error) =>
+      @stopped = true
+      callback error
+
+  _shouldStop: =>
+    return @stopping == true
 
   stop: (callback) =>
-    @shouldStop = true
-
-    timeout = setTimeout =>
-      clearInterval interval
-      callback new Error 'Stop Timeout Expired'
-    , 5000
-
-    interval = setInterval =>
-      return unless @isStopped?
-      clearInterval interval
-      clearTimeout timeout
-      callback()
-    , 250
+    @stopping = true
+    callback null
 
 module.exports = Worker
